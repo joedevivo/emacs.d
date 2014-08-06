@@ -1,7 +1,9 @@
-;; TODO: Figure out how themes work in a post prelude emacs
 ;; Themes
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;;(load-theme 'tomorrow t)
+(use-package color-theme-sanityinc-tomorrow
+  :ensure
+  :config
+  (load-theme 'sanityinc-tomorrow-day t))
+
 
 ;; sound off please
 (setq visible-bell 1)
@@ -32,3 +34,7 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+
+(use-package magit
+  :ensure
+  :bind ("C-x g" . magit-status))

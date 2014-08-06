@@ -11,7 +11,8 @@
              "/usr/local/lib/erlang/lib/wrangler-1.1.01/elisp")
 (require 'wrangler)
 
-;; TODO: EDTS is super slow. disabled for now.
 ;; EDTS
-;;(add-to-list 'load-path "/Users/joe/dev/edts")
-;;(require 'edts-start)
+(add-to-list 'load-path "/Users/joe/dev/edts")
+;; EDTS package-install not ready for prime-time
+(setq edts-inhibit-package-check "please!")
+(require 'edts-start)
