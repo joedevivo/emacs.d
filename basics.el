@@ -4,6 +4,9 @@
   :config
   (load-theme 'sanityinc-tomorrow-day t))
 
+;; y or n
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
 
 ;; sound off please
 (setq visible-bell 1)
@@ -38,3 +41,39 @@
 (use-package magit
   :ensure
   :bind ("C-x g" . magit-status))
+
+;; replace buffer-menu with ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(require 'ido)
+(ido-mode t)
+(setq ido-auto-merge-work-directories-length nil
+      ido-create-new-buffer 'always
+      ido-enable-flex-matching t
+      ido-enable-prefix nil
+      ido-handle-duplicate-virtual-buffers 2
+      ido-max-prospects 10
+      ;; very important to disable this, otherwise, if you happen
+      ;; to try to open a file and your cursor happens to be on a
+      ;; URL-ish thing, then emacs will hang trying to contact
+      ;; some random server for no good reason.
+      ido-use-filename-at-point 'nil
+      ido-use-virtual-buffers t)
+;; auto-completion in minibuffer
+(icomplete-mode +1)
+
+;; savehist keeps track of some history
+(setq savehist-additional-variables
+      ;; search entries
+      '(search ring regexp-search-ring)
+      ;; save every minute
+      savehist-autosave-interval 60
+      ;; keep the home clean
+      savehist-file (concat user-emacs-directory "savehist"))
+(savehist-mode t)
+
+;; save recent files
+(setq recentf-save-file (concat user-emacs-directory "recentf")
+      recentf-max-saved-items 200
+      recentf-max-menu-items 15)
+(recentf-mode t)
